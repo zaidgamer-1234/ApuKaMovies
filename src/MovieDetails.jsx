@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from "react-toastify";
+import { FaPlus } from "react-icons/fa";
 import {
   Image,
   Text,
@@ -10,8 +12,7 @@ import {
   ModalFooter,
   Button,
 } from "@chakra-ui/react";
-import { FaPlus } from "react-icons/fa";
-
+import "react-toastify/dist/ReactToastify.css";
 function MovieDetails({ selectedMovieData, isOpen, onClose }) {
   const {
     Poster,
@@ -25,22 +26,24 @@ function MovieDetails({ selectedMovieData, isOpen, onClose }) {
     imdbID,
   } = selectedMovieData || {};
 
-  const handleAddToWatchlist = () => {
+  const handleAddToWatchlist = (e) => {
+    e.preventDefault();
     const getMovie = JSON.parse(localStorage.getItem("watchlist")) || [];
     const existingMovie = getMovie.some((movie) => movie.imdbID === imdbID);
 
     if (existingMovie) {
-      console.log(`${Title} is already in the watchlist`);
+      toast.error(`${Title} is already in the watchlist`);
       return;
     }
 
     const addMovie = [...getMovie, selectedMovieData];
     localStorage.setItem("watchlist", JSON.stringify(addMovie));
-    console.log(`${Title} added to watchlist`);
+    toast(`${Title} added in watch List`);
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
+      <ToastContainer />
       <ModalOverlay />
       <ModalContent bg="#1a202c" color="white">
         <ModalHeader>{Title}</ModalHeader>
@@ -50,7 +53,7 @@ function MovieDetails({ selectedMovieData, isOpen, onClose }) {
             src={Poster}
             alt={Title}
             mb="20px"
-            borderRadius="md"
+            borderRadius="lg"
             m="10px auto"
           />
           <Text fontSize="lg" mb="10px">

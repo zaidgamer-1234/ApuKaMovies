@@ -1,13 +1,14 @@
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import ShowMovies from "./ShowMovies";
+import { useDisclosure } from "@chakra-ui/react";
 import { useMovies } from "./PostProvider";
+import ShowMovies from "./ShowMovies";
 import InputEl from "./InputEl";
 import Loader from "./Loader";
 import HandlePage from "./HandlePage";
 import Errorbox from "./Errorbox";
 import MovieDetails from "./MovieDetails";
-import { useDisclosure } from "@chakra-ui/react";
+import WatchListModal from "./WatchListModal";
 
 function App() {
   const {
@@ -19,10 +20,10 @@ function App() {
     movieLoaded,
     setWatchList,
     watchList,
-    movie,
   } = useMovies();
 
   const [hasSearched, setHasSearched] = useState(false);
+  const [showWatchlist, setShowWatchlist] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const theme = extendTheme({
@@ -45,19 +46,32 @@ function App() {
   }, [selectedMovie, onOpen]);
 
   useEffect(() => {
-    const getMoviesData = JSON.parse(localStorage.getItem("wishlist"));
+    const getMoviesData = JSON.parse(localStorage.getItem("watchlist"));
     setWatchList(getMoviesData);
-  });
+  }, [setWatchList]);
 
+  const handleDeleteMovie = (imdbID) => {
+    const existingWatchList = JSON.parse(localStorage.getItem("watchlist"));
+    const filterList = existingWatchList.filter(
+      (movie) => movie.imdbID !== imdbID
+    );
+    localStorage.setItem("watchlist", JSON.stringify(filterList));
+
+    setWatchList((list) => list.filter((movie) => movie.imdbID !== imdbID));
+  };
   const handleClose = () => {
     onClose();
     setSelectedMovie(null);
   };
 
+  const handleWatchlistToggle = () => {
+    setShowWatchlist(!showWatchlist);
+  };
+
   return (
     <ChakraProvider theme={theme}>
       <Box bg="#0002047d" minHeight="100vh" color="white">
-        <InputEl />
+        <InputEl handleWatchlistToggle={handleWatchlistToggle} />
         <Box pt="80px">
           {isLoading ? (
             <Loader />
@@ -90,6 +104,12 @@ function App() {
           />
         )}
       </Box>
+      <WatchListModal
+        isOpen={showWatchlist}
+        onClose={handleWatchlistToggle}
+        watchList={watchList}
+        onDeleteMovie={handleDeleteMovie}
+      />
     </ChakraProvider>
   );
 }

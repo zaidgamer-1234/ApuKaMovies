@@ -31,15 +31,9 @@ function PostProvider({ children }) {
         const response = await axios.get(
           `http://www.omdbapi.com/?s=${movie}&apikey=dc2b1092&page=${pageNum}`
         );
-
-        if (response.data.Search && response.data.Search.length > 0) {
-          setSearchMovie(response.data.Search);
-          console.log(searchMovie);
-          setTotalResults(parseInt(response.data.totalResults, 10) || 0);
-        } else {
-          setSearchMovie([]);
-          setTotalResults(0);
-        }
+        setSearchMovie(response.data.Search || []);
+        setTotalResults(parseInt(response.data.totalResults, 10) || 0);
+        setIsLoading(false);
       } catch (err) {
         console.log("Error occurred while fetching data", err.message);
         setError(true);
@@ -47,7 +41,7 @@ function PostProvider({ children }) {
         setIsLoading(false);
       }
     },
-    [movie, searchMovie]
+    [movie]
   );
 
   useEffect(() => {
@@ -62,11 +56,9 @@ function PostProvider({ children }) {
     };
   }, [fetchMovie, page]);
 
-  useEffect(() => {});
-
   const handlePageChange = (event, value) => {
     setPage(value);
-    fetchMovie(value);
+    fetchMovie(value); // Fetch movies for the new page
   };
 
   return (

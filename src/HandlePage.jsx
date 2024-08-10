@@ -6,7 +6,6 @@ function HandlePage() {
   const { handlePageChange, totalResults, page } = useMovies();
 
   const moviesPerPage = 10;
-
   const totalPages = Math.ceil(totalResults / moviesPerPage);
 
   return (
@@ -16,7 +15,7 @@ function HandlePage() {
         count={totalPages}
         page={page}
         color="primary"
-        size="lg"
+        size="large"
       />
     </Box>
   );

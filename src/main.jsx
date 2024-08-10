@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import PostProvider from "./PostProvider.jsx";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
+import "./styles/index.css";
 
 const theme = createTheme({
   typography: {

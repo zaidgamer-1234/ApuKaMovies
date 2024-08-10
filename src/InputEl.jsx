@@ -1,3 +1,5 @@
+import { MdSearch, MdMovie } from "react-icons/md";
+import { useMovies } from "./PostProvider";
 import {
   Flex,
   Input,
@@ -6,13 +8,17 @@ import {
   Text,
   Spacer,
   Icon,
-  Button,
 } from "@chakra-ui/react";
-import { MdSearch, MdMovie, MdPlaylistPlay } from "react-icons/md";
-import { useMovies } from "./PostProvider";
+import { useEffect, useRef } from "react";
+import WatchListbutton from "./WatchListbutton";
 
-function InputEl() {
+function InputEl({ handleWatchlistToggle }) {
   const { movie, setMovie } = useMovies();
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
 
   return (
     <Flex
@@ -39,6 +45,7 @@ function InputEl() {
           <MdSearch color="#fff" />
         </InputLeftElement>
         <Input
+          ref={inputEl}
           placeholder="Search for a movie..."
           size="md"
           borderRadius="full"
@@ -52,19 +59,7 @@ function InputEl() {
           onChange={(e) => setMovie(e.target.value)}
         />
       </InputGroup>
-      <Button
-        ml={4}
-        // onClick={handleViewWatchlist}
-        leftIcon={<MdPlaylistPlay />}
-        colorScheme="yellow"
-        variant="solid"
-        size="md"
-        borderRadius="full"
-        _hover={{ transform: "scale(1.05)", boxShadow: "0 0 10px yellow" }}
-        _active={{ transform: "scale(0.95)" }}
-      >
-        View Watchlist
-      </Button>
+      <WatchListbutton handleWatchlistToggle={handleWatchlistToggle} />
     </Flex>
   );
 }
