@@ -13,6 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
+import { useMovies } from "./PostProvider";
 function MovieDetails({ selectedMovieData, isOpen, onClose }) {
   const {
     Poster,
@@ -25,10 +26,11 @@ function MovieDetails({ selectedMovieData, isOpen, onClose }) {
     Ratings,
     imdbID,
   } = selectedMovieData || {};
+  const { setWatchList } = useMovies();
 
-  const handleAddToWatchlist = (e) => {
-    e.preventDefault();
+  const handleAddToWatchlist = () => {
     const getMovie = JSON.parse(localStorage.getItem("watchlist")) || [];
+
     const existingMovie = getMovie.some((movie) => movie.imdbID === imdbID);
 
     if (existingMovie) {
@@ -37,8 +39,9 @@ function MovieDetails({ selectedMovieData, isOpen, onClose }) {
     }
 
     const addMovie = [...getMovie, selectedMovieData];
+    setWatchList(addMovie);
     localStorage.setItem("watchlist", JSON.stringify(addMovie));
-    toast(`${Title} added in watch List`);
+    toast.success(`${Title} added in watch List`);
   };
 
   return (

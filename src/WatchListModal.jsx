@@ -8,9 +8,10 @@ import {
   ModalCloseButton,
   Button,
   Box,
-  IconButton,
+  Icon,
+  Flex,
 } from "@chakra-ui/react";
-import { MdDelete } from "react-icons/md";
+import { BiX } from "react-icons/bi";
 
 function WatchListModal({ isOpen, onClose, watchList = [], onDeleteMovie }) {
   return (
@@ -46,29 +47,49 @@ function WatchListModal({ isOpen, onClose, watchList = [], onDeleteMovie }) {
                         objectFit: "cover",
                       }}
                     />
-                    <Box>
-                      <h3 style={{ fontWeight: "bold", marginBottom: "5px" }}>
-                        {movie.Title}
-                      </h3>
-                      <p>{movie.Year}</p>
-                      <p style={{ color: "gray.400", marginTop: "2px" }}>
-                        {movie.Genre}
-                      </p>
-                      <p style={{ color: "gray.400", marginTop: "2px" }}>
-                        Rating: {movie.Ratings[0].Value}
-                      </p>
-                    </Box>
+                    <>
+                      <Box>
+                        <h3
+                          style={{
+                            fontWeight: "bold",
+                            marginBottom: "5px",
+                            maxWidth: "165px",
+                          }}
+                        >
+                          {movie.Title}
+                        </h3>
+                        <p> {movie.Year}</p>
+                        <p style={{ color: "gray.400", marginTop: "2px" }}>
+                          Genre: {movie.Genre}
+                        </p>
+                        <p style={{ color: "gray.400", marginTop: "2px" }}>
+                          Writer: {movie.Writer}
+                        </p>
+                      </Box>
+                    </>
                   </Box>
-                  <IconButton
-                    aria-label="Delete movie"
-                    icon={<MdDelete />}
-                    colorScheme="red"
-                    variant="outline"
+                  <Button
+                    leftIcon={<Icon as={BiX} boxSize={6} />}
+                    colorScheme="pink"
+                    variant="ghost"
                     onClick={() => onDeleteMovie(movie.imdbID)}
-                    size="sm"
-                    _hover={{ bg: "red.600", color: "white" }}
-                    _active={{ bg: "red.700" }}
-                  />
+                    size="md"
+                    _hover={{
+                      bg: "pink.600",
+                      color: "white",
+                      transform: "scale(1.05)",
+                      boxShadow: "md",
+                    }}
+                    _active={{
+                      bg: "pink.700",
+                      transform: "scale(1)",
+                      boxShadow: "lg",
+                    }}
+                    borderRadius="full"
+                    px={6}
+                  >
+                    Delete
+                  </Button>
                 </Box>
               ))
             ) : (

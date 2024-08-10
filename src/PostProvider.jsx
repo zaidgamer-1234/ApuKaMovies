@@ -32,6 +32,7 @@ function PostProvider({ children }) {
           `http://www.omdbapi.com/?s=${movie}&apikey=dc2b1092&page=${pageNum}`
         );
         setSearchMovie(response.data.Search || []);
+        console.log(response.data.Search);
         setTotalResults(parseInt(response.data.totalResults, 10) || 0);
         setIsLoading(false);
       } catch (err) {
@@ -58,7 +59,7 @@ function PostProvider({ children }) {
 
   const handlePageChange = (event, value) => {
     setPage(value);
-    fetchMovie(value); // Fetch movies for the new page
+    fetchMovie(value);
   };
 
   return (

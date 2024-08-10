@@ -18,8 +18,8 @@ function App() {
     selectedMovieData,
     setSelectedMovie,
     movieLoaded,
-    setWatchList,
     watchList,
+    setWatchList,
   } = useMovies();
 
   const [hasSearched, setHasSearched] = useState(false);
@@ -64,13 +64,13 @@ function App() {
     setSelectedMovie(null);
   };
 
-  const handleWatchlistToggle = () => {
+  const handleWatchlistToggle = (e) => {
     setShowWatchlist(!showWatchlist);
   };
 
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="#0002047d" minHeight="100vh" color="white">
+      <Box bg="#00020470" minHeight="100vh" color="white">
         <InputEl handleWatchlistToggle={handleWatchlistToggle} />
         <Box pt="80px">
           {isLoading ? (

@@ -17,6 +17,7 @@ function ShowMovies({ movie }) {
       const res = await axios.get(
         `http://www.omdbapi.com/?i=${imdbID}&apikey=dc2b1092`
       );
+      console.log(res.data);
       setSelectedMovie(true);
       setSelectedMovieData(res.data);
 
@@ -66,6 +67,7 @@ function ShowMovies({ movie }) {
         <Text fontSize="xl" fontWeight="bold">
           {Title}
         </Text>
+
         <Text>
           <strong>Type:</strong> {Type}
         </Text>
