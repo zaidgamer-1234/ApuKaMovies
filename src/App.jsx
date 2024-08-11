@@ -21,7 +21,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box
-        backgroundImage="url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876007.jpg')"
+        backgroundImage="url('/background.avif')"
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"

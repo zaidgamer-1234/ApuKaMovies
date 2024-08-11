@@ -15,7 +15,8 @@ import {
 } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 function MovieDetails() {
-  const { selectedMovieData } = useMovies();
+  const { isOpen, onClose, setWatchList, handleClose, selectedMovieData } =
+    useMovies();
   const {
     Poster,
     Title,
@@ -27,8 +28,6 @@ function MovieDetails() {
     Ratings,
     imdbID,
   } = selectedMovieData || {};
-
-  const { isOpen, onClose, setWatchList } = useMovies();
 
   const handleAddToWatchlist = () => {
     const getMovie = JSON.parse(localStorage.getItem("watchlist")) || [];
@@ -84,7 +83,7 @@ function MovieDetails() {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="teal" onClick={onClose} mr={3}>
+          <Button colorScheme="teal" onClick={handleClose} mr={3}>
             Close
           </Button>
           <Button
