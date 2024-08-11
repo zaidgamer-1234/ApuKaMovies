@@ -1,12 +1,7 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useCallback,
-  useContext,
-} from "react";
-import axios from "axios";
+import { createContext, useState, useEffect, useCallback } from "react";
 import { useDisclosure } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
 export const PostContext = createContext();
 
@@ -102,6 +97,10 @@ function PostProvider({ children }) {
     setShowWatchlist(!showWatchlist);
   };
 
+  PostProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   return (
     <PostContext.Provider
       value={{
@@ -138,10 +137,3 @@ function PostProvider({ children }) {
   );
 }
 export default PostProvider;
-
-function useMovies() {
-  const movies = useContext(PostContext);
-  return movies;
-}
-
-export { useMovies };

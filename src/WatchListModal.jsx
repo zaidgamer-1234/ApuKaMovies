@@ -1,3 +1,5 @@
+import { useMovies } from "./helper/customHook";
+import { BiX } from "react-icons/bi";
 import {
   Modal,
   ModalOverlay,
@@ -10,8 +12,6 @@ import {
   Box,
   Icon,
 } from "@chakra-ui/react";
-import { BiX } from "react-icons/bi";
-import { useMovies } from "./PostProvider";
 
 function WatchListModal() {
   const { showWatchlist, watchList, handleDeleteMovie, handleWatchlistToggle } =

@@ -1,5 +1,6 @@
 import { ToastContainer, toast } from "react-toastify";
 import { FaPlus } from "react-icons/fa";
+import { useMovies } from "./helper/customHook";
 import {
   Image,
   Text,
@@ -13,7 +14,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
-import { useMovies } from "./PostProvider";
 function MovieDetails() {
   const { selectedMovieData } = useMovies();
   const {

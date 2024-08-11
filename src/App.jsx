@@ -1,5 +1,5 @@
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { useMovies } from "./PostProvider";
+import { useMovies } from "./helper/customHook";
 import ShowMovies from "./ShowMovies";
 import InputEl from "./InputEl";
 import Loader from "./Loader";

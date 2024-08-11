@@ -1,7 +1,7 @@
 import { Box, Image, Text, Stack, useColorModeValue } from "@chakra-ui/react";
+import { useMovies } from "./helper/customHook";
 import axios from "axios";
-
-import { useMovies } from "./PostProvider";
+import PropTypes from "prop-types";
 
 function ShowMovies({ movie }) {
   const { Poster, Title, Type, Year, imdbID } = movie || {};
@@ -29,6 +29,10 @@ function ShowMovies({ movie }) {
       setMovieLoaded(false);
     }
   }
+
+  ShowMovies.propTypes = {
+    movie: PropTypes.node.isRequired,
+  };
 
   return (
     <Box

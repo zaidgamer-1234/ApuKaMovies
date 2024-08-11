@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Pagination } from "@mui/material";
-import { useMovies } from "./PostProvider";
+import { useMovies } from "./helper/customHook";
 
 function HandlePage() {
   const { handlePageChange, totalResults, page } = useMovies();

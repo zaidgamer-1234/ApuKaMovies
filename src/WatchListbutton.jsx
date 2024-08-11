@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { MdPlaylistPlay } from "react-icons/md";
-import { useMovies } from "./PostProvider";
+import { useMovies } from "./helper/customHook";
 
 function WatchListButton() {
   const { handleWatchlistToggle } = useMovies();

@@ -1,5 +1,5 @@
 import { MdSearch, MdMovie } from "react-icons/md";
-import { useMovies } from "./PostProvider";
+import { useMovies } from "./helper/customHook";
 import {
   Flex,
   Input,
