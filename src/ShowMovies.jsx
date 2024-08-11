@@ -5,28 +5,21 @@ import PropTypes from "prop-types";
 
 function ShowMovies({ movie }) {
   const { Poster, Title, Type, Year, imdbID } = movie || {};
-  const { setSelectedMovie, setSelectedMovieData, setMovieLoaded } =
-    useMovies();
+  const { setSelectedMovie, setSelectedMovieData } = useMovies();
 
   const cardHoverBg = useColorModeValue("gray.700", "gray.600");
   const borderColor = useColorModeValue("gray.700", "gray.600");
 
   async function handleClick(imdbID) {
-    setMovieLoaded(true);
     try {
       const res = await axios.get(
         `http://www.omdbapi.com/?i=${imdbID}&apikey=dc2b1092`
       );
-      console.log(res.data);
+
       setSelectedMovie(true);
       setSelectedMovieData(res.data);
-
-      console.log(res.data);
     } catch (err) {
       console.log("error occured while fetching description data", err.message);
-      setMovieLoaded(false);
-    } finally {
-      setMovieLoaded(false);
     }
   }
 
@@ -40,7 +33,7 @@ function ShowMovies({ movie }) {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      bg="#464646"
+      bg="#252525"
       color="white"
       p={4}
       maxW="300px"

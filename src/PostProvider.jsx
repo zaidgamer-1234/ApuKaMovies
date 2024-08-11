@@ -14,7 +14,6 @@ function PostProvider({ children }) {
   const [error, setError] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(false);
   const [selectedMovieData, setSelectedMovieData] = useState({});
-  const [movieLoaded, setMovieLoaded] = useState(false);
   const [watchList, setWatchList] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [showWatchlist, setShowWatchlist] = useState(false);
@@ -31,7 +30,7 @@ function PostProvider({ children }) {
           `http://www.omdbapi.com/?s=${movie}&apikey=dc2b1092&page=${pageNum}`
         );
         setSearchMovie(response.data.Search || []);
-        console.log(response.data.Search);
+
         setTotalResults(parseInt(response.data.totalResults, 10) || 0);
         setIsLoading(false);
       } catch (err) {
@@ -49,10 +48,10 @@ function PostProvider({ children }) {
       if (e.key === "Enter") fetchMovie(page);
     };
 
-    document.addEventListener("keydown", handlePress);
+    document.addEventListener("keypress", handlePress);
 
     return () => {
-      document.removeEventListener("keydown", handlePress);
+      document.removeEventListener("keypress", handlePress);
     };
   }, [fetchMovie, page]);
 
@@ -116,8 +115,6 @@ function PostProvider({ children }) {
         setSelectedMovie,
         selectedMovieData,
         setSelectedMovieData,
-        movieLoaded,
-        setMovieLoaded,
         watchList,
         setWatchList,
         hasSearched,

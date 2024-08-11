@@ -9,7 +9,7 @@ import MovieDetails from "./MovieDetails";
 import WatchListModal from "./WatchListModal";
 
 function App() {
-  const { isLoading, searchMovie, movieLoaded, hasSearched } = useMovies();
+  const { isLoading, searchMovie, hasSearched } = useMovies();
 
   const theme = extendTheme({
     fonts: {
@@ -17,17 +17,15 @@ function App() {
       body: `'Roboto', sans-serif`,
     },
   });
-
   return (
     <ChakraProvider theme={theme}>
       <Box
-        backgroundImage="url('/background.avif')"
+        backgroundImage="url('https://dqae.org/wp-content/uploads/2022/09/234234-1140x641.jpg')"
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         minHeight="100vh"
-        color="white"
-        backdropFilter="blur(10px)"
+        width="100%"
       >
         <InputEl />
         <Box pt="80px">
@@ -52,9 +50,9 @@ function App() {
             <Errorbox />
           ) : null}
         </Box>
-        {movieLoaded ? <Loader /> : <MovieDetails />}
+        <MovieDetails />
+        <WatchListModal />
       </Box>
-      <WatchListModal />
     </ChakraProvider>
   );
 }

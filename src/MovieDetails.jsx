@@ -15,8 +15,7 @@ import {
 } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 function MovieDetails() {
-  const { isOpen, onClose, setWatchList, handleClose, selectedMovieData } =
-    useMovies();
+  const { isOpen, setWatchList, handleClose, selectedMovieData } = useMovies();
   const {
     Poster,
     Title,
@@ -46,7 +45,7 @@ function MovieDetails() {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
+    <Modal isOpen={isOpen} onClose={handleClose} size="lg">
       <ToastContainer />
       <ModalOverlay />
       <ModalContent bg="#1a202c" color="white">
