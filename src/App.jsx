@@ -20,7 +20,15 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="#00020470" minHeight="100vh" color="white">
+      <Box
+        backgroundImage="url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876007.jpg')"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        backgroundRepeat="no-repeat"
+        minHeight="100vh"
+        color="white"
+        backdropFilter="blur(10px)"
+      >
         <InputEl />
         <Box pt="80px">
           {isLoading ? (
@@ -38,12 +46,12 @@ function App() {
                   <ShowMovies key={movie.imdbID} movie={movie} />
                 ))}
               </div>
+              <HandlePage />
             </>
           ) : hasSearched ? (
             <Errorbox />
           ) : null}
         </Box>
-        <HandlePage />
         {movieLoaded ? <Loader /> : <MovieDetails />}
       </Box>
       <WatchListModal />

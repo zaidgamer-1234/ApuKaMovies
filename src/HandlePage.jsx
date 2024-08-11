@@ -14,8 +14,20 @@ function HandlePage() {
         onChange={handlePageChange}
         count={totalPages}
         page={page}
-        color="primary"
         size="large"
+        sx={{
+          "& .MuiPaginationItem-root": {
+            color: "#000",
+            backgroundColor: "#fff",
+            "&:hover": {
+              backgroundColor: "#ECC94B",
+            },
+            "&.Mui-selected": {
+              backgroundColor: "#ECC94B",
+              color: "white",
+            },
+          },
+        }}
       />
     </Box>
   );
