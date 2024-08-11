@@ -12,7 +12,7 @@ import {
 import { useEffect, useRef } from "react";
 import WatchListbutton from "./WatchListbutton";
 
-function InputEl({ handleWatchlistToggle }) {
+function InputEl() {
   const { movie, setMovie } = useMovies();
   const inputEl = useRef(null);
 

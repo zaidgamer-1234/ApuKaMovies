@@ -101,6 +101,7 @@ function PostProvider({ children }) {
   const handleWatchlistToggle = () => {
     setShowWatchlist(!showWatchlist);
   };
+
   return (
     <PostContext.Provider
       value={{
@@ -136,11 +137,11 @@ function PostProvider({ children }) {
     </PostContext.Provider>
   );
 }
+export default PostProvider;
 
 function useMovies() {
   const movies = useContext(PostContext);
   return movies;
 }
 
-export default PostProvider;
 export { useMovies };

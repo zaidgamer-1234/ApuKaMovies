@@ -7,16 +7,9 @@ import HandlePage from "./HandlePage";
 import Errorbox from "./Errorbox";
 import MovieDetails from "./MovieDetails";
 import WatchListModal from "./WatchListModal";
-import { useState } from "react";
 
 function App() {
-  const {
-    isLoading,
-    searchMovie,
-    selectedMovieData,
-    movieLoaded,
-    hasSearched,
-  } = useMovies();
+  const { isLoading, searchMovie, movieLoaded, hasSearched } = useMovies();
 
   const theme = extendTheme({
     fonts: {
@@ -51,11 +44,7 @@ function App() {
           ) : null}
         </Box>
         <HandlePage />
-        {movieLoaded ? (
-          <Loader />
-        ) : (
-          <MovieDetails selectedMovieData={selectedMovieData} />
-        )}
+        {movieLoaded ? <Loader /> : <MovieDetails />}
       </Box>
       <WatchListModal />
     </ChakraProvider>
