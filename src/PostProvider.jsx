@@ -29,12 +29,14 @@ function PostProvider({ children }) {
         const response = await axios.get(
           `http://www.omdbapi.com/?s=${movie}&apikey=dc2b1092&page=${pageNum}`
         );
+
         setSearchMovie(response.data.Search || []);
 
         setTotalResults(parseInt(response.data.totalResults, 10) || 0);
         setIsLoading(false);
       } catch (err) {
         console.log("Error occurred while fetching data", err.message);
+
         setError(true);
       } finally {
         setIsLoading(false);

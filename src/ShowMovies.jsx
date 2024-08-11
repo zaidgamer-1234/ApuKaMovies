@@ -33,7 +33,7 @@ function ShowMovies({ movie }) {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      bg="#252525"
+      bg="#404040"
       color="white"
       p={4}
       maxW="300px"

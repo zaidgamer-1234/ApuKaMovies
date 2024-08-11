@@ -3,29 +3,23 @@ import { Box, Text } from "@chakra-ui/react";
 function Errorbox() {
   return (
     <Box
-      bg="#909090"
-      color="red.600"
+      bg="red.600"
+      color="white"
       borderWidth="1px"
-      borderRadius="full"
-      borderColor="red.800"
-      p={3}
+      borderRadius="md"
+      borderColor="red.700"
+      p={4}
       mx="auto"
       mt="15rem"
       maxW="md"
-      boxShadow="lg"
+      boxShadow="md"
       textAlign="center"
     >
-      <Text
-        fontStyle="sans-serif"
-        fontSize="3xl"
-        fontWeight="bold"
-        mb={4}
-        textShadow="1px 1px 3px rgba(0, 0, 0, 0.6)"
-      >
-        No results found.
+      <Text fontSize="2xl" fontWeight="bold" mb={3}>
+        Error
       </Text>
-      <Text fontSize="lg" fontWeight="bold">
-        Try adjusting your search criteria.
+      <Text fontSize="lg" fontWeight="semibold">
+        No results found. Try adjusting your search criteria.
       </Text>
     </Box>
   );

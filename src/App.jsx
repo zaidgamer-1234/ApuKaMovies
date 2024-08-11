@@ -20,7 +20,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box
-        backgroundImage="url('https://dqae.org/wp-content/uploads/2022/09/234234-1140x641.jpg')"
+        backgroundImage="url('background.avif')"
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
