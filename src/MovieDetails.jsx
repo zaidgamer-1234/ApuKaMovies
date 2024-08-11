@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
 import { useMovies } from "./PostProvider";
-function MovieDetails({ selectedMovieData, isOpen, onClose }) {
+function MovieDetails({ selectedMovieData }) {
   const {
     Poster,
     Title,
@@ -26,7 +26,8 @@ function MovieDetails({ selectedMovieData, isOpen, onClose }) {
     Ratings,
     imdbID,
   } = selectedMovieData || {};
-  const { setWatchList } = useMovies();
+
+  const { isOpen, onClose, setWatchList } = useMovies();
 
   const handleAddToWatchlist = () => {
     const getMovie = JSON.parse(localStorage.getItem("watchlist")) || [];

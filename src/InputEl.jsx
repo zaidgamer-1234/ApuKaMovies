@@ -59,7 +59,7 @@ function InputEl({ handleWatchlistToggle }) {
           onChange={(e) => setMovie(e.target.value)}
         />
       </InputGroup>
-      <WatchListbutton handleWatchlistToggle={handleWatchlistToggle} />
+      <WatchListbutton />
     </Flex>
   );
 }

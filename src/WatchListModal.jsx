@@ -9,13 +9,16 @@ import {
   Button,
   Box,
   Icon,
-  Flex,
 } from "@chakra-ui/react";
 import { BiX } from "react-icons/bi";
+import { useMovies } from "./PostProvider";
 
-function WatchListModal({ isOpen, onClose, watchList = [], onDeleteMovie }) {
+function WatchListModal() {
+  const { showWatchlist, watchList, handleDeleteMovie, handleWatchlistToggle } =
+    useMovies();
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
+    <Modal isOpen={showWatchlist} onClose={handleWatchlistToggle} size="lg">
       <ModalOverlay />
       <ModalContent bg="#1a202c" color="white">
         <ModalHeader>Your Watchlist</ModalHeader>
@@ -47,35 +50,33 @@ function WatchListModal({ isOpen, onClose, watchList = [], onDeleteMovie }) {
                         objectFit: "cover",
                       }}
                     />
-                    <>
-                      <Box>
-                        <h3
-                          style={{
-                            fontWeight: "bold",
-                            marginBottom: "5px",
-                            maxWidth: "165px",
-                          }}
-                        >
-                          {movie.Title}
-                        </h3>
-                        <p> {movie.Year}</p>
-                        <p style={{ color: "gray.400", marginTop: "2px" }}>
-                          Genre: {movie.Genre}
-                        </p>
-                        <p style={{ color: "gray.400", marginTop: "2px" }}>
-                          Writer: {movie.Writer}
-                        </p>
-                      </Box>
-                    </>
+                    <Box>
+                      <h3
+                        style={{
+                          fontWeight: "bold",
+                          marginBottom: "5px",
+                          maxWidth: "165px",
+                        }}
+                      >
+                        {movie.Title}
+                      </h3>
+                      <p>{movie.Year}</p>
+                      <p style={{ color: "gray.400", marginTop: "2px" }}>
+                        Genre: {movie.Genre}
+                      </p>
+                      <p style={{ color: "gray.400", marginTop: "2px" }}>
+                        Writer: {movie.Writer}
+                      </p>
+                    </Box>
                   </Box>
                   <Button
                     leftIcon={<Icon as={BiX} boxSize={6} />}
-                    colorScheme="pink"
+                    colorScheme="red"
                     variant="ghost"
-                    onClick={() => onDeleteMovie(movie.imdbID)}
+                    onClick={() => handleDeleteMovie(movie.imdbID)}
                     size="md"
                     _hover={{
-                      bg: "pink.600",
+                      bg: "red.600",
                       color: "white",
                       transform: "scale(1.05)",
                       boxShadow: "md",
@@ -98,7 +99,7 @@ function WatchListModal({ isOpen, onClose, watchList = [], onDeleteMovie }) {
           </Box>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="yellow" mr={3} onClick={onClose}>
+          <Button colorScheme="yellow" mr={3} onClick={handleWatchlistToggle}>
             Close
           </Button>
         </ModalFooter>
