@@ -11,7 +11,7 @@ function Errorbox() {
       p={4}
       mx="auto"
       mt="15rem"
-      maxW="md"
+      maxW={["240px", "sm", "md", "lg"]}
       boxShadow="md"
       textAlign="center"
     >
