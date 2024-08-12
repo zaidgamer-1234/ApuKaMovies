@@ -39,6 +39,7 @@ function ShowMovies({ movie }) {
       maxW="300px"
       m={4}
       boxShadow="lg"
+      width={["250px"]}
       _hover={{
         bg: cardHoverBg,
         transform: "scale(1.03)",

@@ -32,15 +32,32 @@ function InputEl() {
       position="fixed"
       top={0}
       zIndex={1}
+      flexDirection={["column", "column", "row"]}
     >
-      <Flex align="center">
-        <Icon as={MdMovie} boxSize={8} color="blue.400" mr={2} />
-        <Text fontSize="2xl" color="#ddd" fontWeight="bold">
+      <Flex
+        justify={["center", "center", "left"]}
+        align="center"
+        mb={[4, 4, 0]}
+        width={["100%", "100%", "auto"]}
+        small
+        screens
+      >
+        <Icon as={MdMovie} boxSize={[6, 7, 8]} color="blue.400" mr={2} />
+        <Text
+          fontSize={["md", "xl", "2xl"]}
+          color="#ddd"
+          fontWeight="bold"
+          screens
+        >
           Apun Ka Movies
         </Text>
       </Flex>
-      <Spacer />
-      <InputGroup maxW="500px" width="100%">
+      <Spacer display={["none", "none", "block"]} />
+      <InputGroup
+        maxW={["50%", "100%", "500px"]}
+        width={["100%", "100%", "auto"]}
+        mb={[4, 4, 0]}
+      >
         <InputLeftElement pointerEvents="none">
           <MdSearch color="#fff" />
         </InputLeftElement>
@@ -59,7 +76,9 @@ function InputEl() {
           onChange={(e) => setMovie(e.target.value)}
         />
       </InputGroup>
-      <WatchListbutton />
+      <WatchListbutton
+        display={["inline-flex", "inline-flex", "inline-flex"]}
+      />
     </Flex>
   );
 }

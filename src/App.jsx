@@ -28,7 +28,7 @@ function App() {
         width="100%"
       >
         <InputEl />
-        <Box pt="80px">
+        <Box pt={["170px", "170px", "80px"]}>
           {isLoading ? (
             <Loader />
           ) : searchMovie.length > 0 ? (
