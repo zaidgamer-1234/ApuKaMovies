@@ -82,10 +82,16 @@ function MovieDetails() {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="teal" onClick={handleClose} mr={3}>
+          <Button
+            colorScheme="teal"
+            onClick={handleClose}
+            mr={3}
+            fontSize={["11px", "20px"]}
+          >
             Close
           </Button>
           <Button
+            fontSize={["11px", "20px"]}
             colorScheme="yellow"
             onClick={handleAddToWatchlist}
             leftIcon={<FaPlus />}

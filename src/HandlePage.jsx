@@ -1,8 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import { Pagination } from "@mui/material";
 import { useMovies } from "./helper/customHook";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 function HandlePage() {
+  const paginationSize = useBreakpointValue({
+    base: "small",
+    md: "medium",
+    lg: "large",
+  });
   const { handlePageChange, totalResults, page } = useMovies();
 
   const moviesPerPage = 10;
@@ -14,7 +20,7 @@ function HandlePage() {
         onChange={handlePageChange}
         count={totalPages}
         page={page}
-        size="large"
+        size={paginationSize}
         sx={{
           "& .MuiPaginationItem-root": {
             color: "#000",

@@ -53,17 +53,21 @@ function InputEl() {
         </Text>
       </Flex>
       <Spacer display={["none", "none", "block"]} />
+
       <InputGroup
         maxW={["50%", "100%", "500px"]}
         width={["100%", "100%", "auto"]}
         mb={[4, 4, 0]}
+        ml={[3]}
+        display={["flex"]}
+        justify={["center"]}
       >
         <InputLeftElement pointerEvents="none">
           <MdSearch color="#fff" />
         </InputLeftElement>
         <Input
           ref={inputEl}
-          placeholder="Search for a movie..."
+          placeholder="Search"
           size="md"
           borderRadius="full"
           bgColor="gray.700"

@@ -1,10 +1,42 @@
-import { Button } from "@chakra-ui/react";
-import { MdPlaylistPlay } from "react-icons/md";
+import {
+  Button,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useBreakpointValue,
+  Box,
+} from "@chakra-ui/react";
+import { MdPlaylistPlay, MdMenu } from "react-icons/md"; // Use MdMenu for the menu icon
 import { useMovies } from "./helper/customHook";
 
 function WatchListButton() {
   const { handleWatchlistToggle } = useMovies();
-  return (
+
+  const isSmallScreen = useBreakpointValue({ base: true, sm: false });
+
+  return isSmallScreen ? (
+    <Box position="absolute" top="1rem" right="1rem">
+      <Menu>
+        <MenuButton
+          as={IconButton}
+          aria-label="Options"
+          icon={<MdMenu />}
+          variant="outline"
+          sx={{
+            color: "#fcfafa",
+            border: "1px solid blue",
+          }}
+        />
+        <MenuList>
+          <MenuItem onClick={handleWatchlistToggle} icon={<MdPlaylistPlay />}>
+            View Watchlist
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </Box>
+  ) : (
     <Button
       onClick={handleWatchlistToggle}
       ml={4}

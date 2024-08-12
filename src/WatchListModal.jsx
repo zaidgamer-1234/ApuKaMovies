@@ -11,11 +11,26 @@ import {
   Button,
   Box,
   Icon,
+  Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 function WatchListModal() {
   const { showWatchlist, watchList, handleDeleteMovie, handleWatchlistToggle } =
     useMovies();
+
+  const imgWidth = useBreakpointValue({
+    base: "80px",
+    sm: "100px",
+    md: "120px",
+  });
+  const imgHeight = useBreakpointValue({
+    base: "100px",
+    sm: "130px",
+    md: "150px",
+  });
+  const flexDirection = useBreakpointValue({ base: "column", md: "row" });
+  const textAlign = useBreakpointValue({ base: "center", md: "center" });
 
   return (
     <Modal isOpen={showWatchlist} onClose={handleWatchlistToggle} size="lg">
@@ -34,39 +49,39 @@ function WatchListModal() {
                   p="4"
                   mb="4"
                   display="flex"
+                  flexDirection={flexDirection}
                   alignItems="center"
                   justifyContent="space-between"
                   gap="4"
                   boxShadow="lg"
                 >
-                  <Box display="flex" alignItems="center" gap="4">
+                  <Box
+                    display="flex"
+                    flexDirection={flexDirection}
+                    alignItems="center"
+                    gap="4"
+                  >
                     <img
                       src={movie.Poster}
                       alt={movie.Title}
                       style={{
                         borderRadius: "8px",
-                        width: "120px",
-                        height: "150px",
+                        width: imgWidth,
+                        height: imgHeight,
                         objectFit: "cover",
                       }}
                     />
-                    <Box>
-                      <h3
-                        style={{
-                          fontWeight: "bold",
-                          marginBottom: "5px",
-                          maxWidth: "165px",
-                        }}
-                      >
+                    <Box textAlign={textAlign}>
+                      <Text fontWeight="bold" mb="2">
                         {movie.Title}
-                      </h3>
-                      <p>{movie.Year}</p>
-                      <p style={{ color: "gray.400", marginTop: "2px" }}>
+                      </Text>
+                      <Text>{movie.Year}</Text>
+                      <Text color="gray.400" mt="2">
                         Genre: {movie.Genre}
-                      </p>
-                      <p style={{ color: "gray.400", marginTop: "2px" }}>
+                      </Text>
+                      <Text color="gray.400" mt="2">
                         Writer: {movie.Writer}
-                      </p>
+                      </Text>
                     </Box>
                   </Box>
                   <Button
@@ -94,7 +109,7 @@ function WatchListModal() {
                 </Box>
               ))
             ) : (
-              <p>No movies in your watchlist</p>
+              <Text>No movies in your watchlist</Text>
             )}
           </Box>
         </ModalBody>
