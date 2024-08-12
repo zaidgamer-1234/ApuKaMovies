@@ -24,6 +24,7 @@ function WatchListButton() {
           aria-label="Options"
           icon={<MdMenu />}
           variant="outline"
+          size="md"
           sx={{
             color: "#fcfafa",
             border: "1px solid blue",

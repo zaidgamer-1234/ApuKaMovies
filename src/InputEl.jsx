@@ -67,7 +67,7 @@ function InputEl() {
         </InputLeftElement>
         <Input
           ref={inputEl}
-          placeholder="Search"
+          placeholder="Search a movie"
           size="md"
           borderRadius="full"
           bgColor="gray.700"
